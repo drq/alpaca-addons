@@ -1,0 +1,92 @@
+<?xml version='1.0'?>
+<project name="Alpaca Add-ons" basedir="." default="all">
+
+    <!-- load custom properties file -->
+    <property file="custom-build.properties"/>
+
+    <!-- load properties from file -->
+    <property file="build.properties"/>
+
+    <property name="project.dir" value="."/>
+
+    <property name="dist.dir" value="${project.dir}/dist"/>
+    <property name="lib.dir" value="${project.dir}/lib"/>
+    <property name="build.dir" value="${project.dir}/build"/>
+
+    <property name="yui-compressor" value="${project.dir}/tool/yuicompressor-2.4.7.jar"/>
+
+    <target name="setup" description="Creates all required directories" depends="clean">
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <!-- Twitter Bootstrap Add-on -->
+    <property name="twitter-bootstrap.dir" value="${project.dir}/twitter-bootstrap"/>
+    <property name="twitter-bootstrap.js.dir" value="${twitter-bootstrap.dir}/js"/>
+    <property name="twitter-bootstrap.css.dir" value="${project.dir}/twitter-bootstrap/css"/>
+    <property name="twitter-bootstrap.dist.dir" value="${dist.dir}/twitter-bootstrap"/>
+    <property name="twitter-bootstrap.appkey" value="alpaca-twitter-bootstrap"/>
+
+    <target name="twitter-bootstrap-concat-js" description="Concat all twitter bootstrap add-on javascript files">
+        <concat destfile="${twitter-bootstrap.dist.dir}/js/${twitter-bootstrap.appkey}.js">
+            <filelist dir="${project.dir}">
+                <file name="license.txt"/>
+            </filelist>
+            <filelist dir="${twitter-bootstrap.js.dir}">
+                <file name="TwitterBootstrapView.js"/>
+            </filelist>
+        </concat>
+    </target>
+
+    <target name="twitter-bootstrap-concat-css" description="Concat all twitter bootstrap add-on css files">
+        <concat destfile="${twitter-bootstrap.dist.dir}/css/${twitter-bootstrap.appkey}.css">
+            <filelist dir="${project.dir}">
+                <file name="license.txt"/>
+            </filelist>
+            <filelist dir="${twitter-bootstrap.css.dir}">
+                <file name="alpaca-twitter-bootstrap.css"/>
+            </filelist>
+        </concat>
+    </target>
+
+    <target name="twitter-bootstrap-compress" description="Compress the twitter bootstrap add-on javascript and css"
+            depends="twitter-bootstrap-concat-js,twitter-bootstrap-concat-css">
+        <echo>Compressing Javascript...</echo>
+        <apply executable="java" parallel="false" dest="${twitter-bootstrap.dist.dir}/js">
+            <fileset dir="${twitter-bootstrap.dist.dir}/js">
+                <include name="**/*.js"/>
+                <exclude name="**/*-min.js"/>
+                <exclude name="**/*.min.js"/>
+            </fileset>
+            <arg line="-jar"/>
+            <arg path="${yui-compressor}"/>
+            <arg line="-o"/>
+            <targetfile/>
+            <srcfile/>
+            <mapper type="glob" from="*.js" to="*.min.js"/>
+        </apply>
+        <echo>Compressing CSS...</echo>
+        <apply executable="java" parallel="false" dest="${twitter-bootstrap.dist.dir}/css">
+            <fileset dir="${twitter-bootstrap.dist.dir}/css">
+                <include name="**/*.css"/>
+                <exclude name="**/*-min.css"/>
+                <exclude name="**/*.min.css"/>
+            </fileset>
+            <arg line="-jar"/>
+            <arg path="${yui-compressor}"/>
+            <arg line="-o"/>
+            <targetfile/>
+            <srcfile/>
+            <mapper type="glob" from="*.css" to="*.min.css"/>
+        </apply>
+    </target>
+
+    <target name="twitter-bootstrap" description="Build the twitter bootstrap add-on"
+            depends="twitter-bootstrap-compress"/>
+
+    <target name="all" description="Build all add-ons"
+            depends="twitter-bootstrap"/>
+</project>
