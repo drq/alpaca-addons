@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Alpaca Twitter Bootstrap Addon Example - Contact Us Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="Alpaca Twitter Bootstrap Addon Example - Contact Us Form">
+    <meta name="author" content="Yong Qu">
+
+    <link href="../../lib/bootstrap/css/bootstrap-united.min.css" rel="stylesheet">
+    <link href="../../lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../../lib/alpaca/css/alpaca-core.min.css" rel="stylesheet">
+    <link href="../css/alpaca-twitter-bootstrap.css" rel="stylesheet">
+    <link href="css/examples.css" rel="stylesheet">
+</head>
+
+
+<body class="preview" data-spy="scroll" data-target=".subnav" data-offset="80">
+
+<!-- Navbar
+================================================== -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="javascript:void(0);">Bootstrap Addon</a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active">
+                        <a href="#">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <section id="typography">
+        <div class="row">
+            <div class="span12">
+                <h2>Contact Us</h2>
+
+                <p>
+
+                <div id="contact-us"></div>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer
+   ================================================== -->
+    <hr>
+
+    <footer id="footer">
+        <div class="links">
+        </div>
+        <p class="copyright">Copyright &copy; 2013 NextFrontier Technologies Inc. | All Rights Reserved</p>
+    </footer>
+
+</div>
+<!-- /container -->
+
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../lib/alpaca/js/alpaca.min.js"></script>
+<script src="js/application.js"></script>
+<script src="../js/TwitterBootstrapView.js"></script>
+<script type="text/javascript" id="field1-script">
+    $(function() {
+        $("#contact-us").alpaca({
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "required" : true
+                    },
+                    "company": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "comments": {
+                        "type": "string"
+                    }
+                }
+            },
+            "options": {
+                "fields": {
+                    "name": {
+                        "label": "Your Name"
+                    },
+                    "email": {
+                        "label": "Email Address",
+                        "type": "email",
+                        "hideInitValidationError": true
+                    },
+                    "company": {
+                        "label": "Company Name"
+                    },
+                    "phone": {
+                        "label": "Phone Number",
+                        "type": "phone"
+                    },
+                    "comments": {
+                        "label": "Project Description",
+                        "type": "textarea"
+                    }
+                }
+            },
+            "view" : "VIEW_WEB_EDIT_TWITTER_BOOTSTRAP",
+            "postRender": function(renderedForm) {
+                $('<button type="submit" class="btn">Send</button>').click(function() {
+                    var val = renderedForm.getValue();
+                    renderedForm.showHiddenMessages();
+                    if (renderedForm.isValid(true)) {
+                            var modalDialog = '<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">'
+                                + '<div class="modal-header">'
+                                + '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>'
+                                + '<h3 id="myModalLabel">Thank you!</h3>'
+                                + '</div>'
+                                + '<div class="modal-body">'
+                                + '<p>Hello,</p>'
+                                + '<p>Your information was received.</p>'
+                                + '<p>We will be in touch with you shortly.</p>'
+                                + '<p>Best wishes,</p>'
+                                + '<p>NXF Tech Inc.</p>'
+                                + '</div>'
+                                + '<div class="modal-footer">'
+                                + '<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>'
+                                + '</div>'
+                                + '</div>';
+                            $(modalDialog).modal('show');
+                    }
+                }).appendTo(renderedForm.outerEl);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
