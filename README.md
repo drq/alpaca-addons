@@ -1,4 +1,4 @@
-alpaca-addons
+Alpaca Add-ons
 =============
 
-Alpaca Addons
+This project provides a set of extensions and tools for Alpaca Forms.
