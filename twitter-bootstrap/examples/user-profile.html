@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Alpaca Twitter Bootstrap Addon Example - User Profile Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="Alpaca Twitter Bootstrap Addon Example - User Profile Form">
+    <meta name="author" content="Yong Qu">
+
+    <link href="../../lib/bootstrap/css/bootstrap-united.min.css" rel="stylesheet">
+    <link href="../../lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="../../lib/alpaca/css/alpaca-core.min.css" rel="stylesheet">
+    <link href="../css/alpaca-twitter-bootstrap.css" rel="stylesheet">
+    <link href="css/examples.css" rel="stylesheet">
+</head>
+
+
+<body class="preview" data-spy="scroll" data-target=".subnav" data-offset="80">
+
+<!-- Navbar
+================================================== -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="javascript:void(0);">Bootstrap Addon</a>
+
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li>
+                        <a href="contact-us.html">Contact Us</a>
+                    </li>
+                    <li class="active">
+                        <a href="javascript:void(0);">User Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <section id="typography">
+        <div class="row">
+            <div class="span12">
+                <h2>User Profile</h2>
+
+                <p>
+
+                <div id="contact-us"></div>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer
+   ================================================== -->
+    <hr>
+
+    <footer id="footer">
+        <div class="links">
+        </div>
+        <p class="copyright">Copyright &copy; 2013 NextFrontier Technologies Inc. | All Rights Reserved</p>
+    </footer>
+
+</div>
+<!-- /container -->
+
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../lib/alpaca/js/alpaca.min.js"></script>
+<script src="js/application.js"></script>
+<script src="../js/TwitterBootstrapView.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" id="field1-script">
+    $(function() {
+        $("#contact-us").alpaca({
+            "schema": {
+                "title":"Customer Profile",
+                "description":"Alpaca Farm Ice Cream Customer Profile Form.",
+                "type":"object",
+                "properties":{
+                    "name":{
+                        "title":"Name",
+                        "description":"Enter your full name.",
+                        "type":"string",
+                        "required":true
+                    },
+                    "age":{
+                        "title":"Age",
+                        "description":"Enter your age.",
+                        "type":"number"
+                    },
+                    "gender":{
+                        "title":"Gender",
+                        "type":"string",
+                        "enum":[
+                            "Male",
+                            "Female"
+                        ]
+                    },
+                    "photo":{
+                        "title":"Photo",
+                        "description":"Upload your profile picture.",
+                        "type":"string",
+                        "format":"uri"
+                    },
+                    "member":{
+                        "title":"Member",
+                        "type":"boolean",
+                        "description":"Are you a memeber?"
+                    },
+                    "icecream":{
+                        "title":"Favorite",
+                        "type":"string",
+                        "enum":[
+                            "Vanilla",
+                            "Chocolate",
+                            "Coffee",
+                            "Strawberry",
+                            "Mint"
+                        ]
+                    },
+                    "phone":{
+                        "title":"Home Phone",
+                        "type":"string",
+                        "format":"phone"
+                    },
+                    "address":{
+                        "title":"Home Address",
+                        "type":"any"
+                    }
+                }
+            },
+            "options": {
+                "renderForm":true,
+                "form":{
+                    "attributes":{
+                        "action":"../../endpoints/echo.php",
+                        "method":"post"
+                    },
+                    "buttons":{
+                        "submit":{},
+                        "reset":{}
+                    }
+                },
+                "fields":{
+                    "name":{
+                        "hideInitValidationError" : true
+                    },
+                    "photo":{
+                        "type":"file"
+                    },
+                    "member":{
+                        "rightLabel":"Alpaca Club Member"
+                    },
+                    "address":{
+                        "type":"address",
+                        "addressValidation":true
+                    }
+                }
+            },
+            "view" : "VIEW_WEB_EDIT_TWITTER_BOOTSTRAP",
+            "postRender": function(renderedForm) {
+
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
