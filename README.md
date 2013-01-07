@@ -10,7 +10,7 @@ web applications.
 
 ### Installation
 
-Include following stylesheet and JavaScript file right after the includes for Alpaca Forms and Bootstrap.
+Include following stylesheet and JavaScript files right after the includes for Alpaca Forms and Bootstrap.
 
 ```html
 <link href="http://drq.github.com/alpaca-addons/dist/twitter-bootstrap/css/alpaca-twitter-bootstrap.min.css"
