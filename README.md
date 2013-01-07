@@ -12,10 +12,10 @@ web applications.
 
 Include following stylesheet and JavaScript file right after the includes for Alpaca Forms and Bootstrap.
 
-```javascript
-<link href="http://drq.github.com/alpaca-addons/twitter-bootstrap/css/alpaca-twitter-bootstrap.min.css"
+```html
+<link href="http://drq.github.com/alpaca-addons/dist/twitter-bootstrap/css/alpaca-twitter-bootstrap.min.css"
     rel="stylesheet">
-<script src="http://drq.github.com/alpaca-addons/twitter-bootstrap/js/alpaca-twitter-bootstrap.min.js"></script>
+<script src="http://drq.github.com/alpaca-addons/dist/twitter-bootstrap/js/alpaca-twitter-bootstrap.min.js"></script>
 ```
 
 ### Examples
