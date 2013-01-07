@@ -15,8 +15,7 @@ Include following stylesheet and JavaScript file right after the includes for Al
 ```javascript
 <link href="http://drq.github.com/alpaca-addons/twitter-bootstrap/css/alpaca-twitter-bootstrap.min.css"
     rel="stylesheet">
-<script src="http://drq.github.com/alpaca-addons/twitter-bootstrap/js/alpaca-twitter-bootstrap.min.js">
-</script>
+<script src="http://drq.github.com/alpaca-addons/twitter-bootstrap/js/alpaca-twitter-bootstrap.min.js"></script>
 ```
 
 ### Examples
